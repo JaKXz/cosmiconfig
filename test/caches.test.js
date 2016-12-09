@@ -5,7 +5,7 @@ var sinon = require('sinon');
 var path = require('path');
 var fs = require('fs');
 var cosmiconfig = require('..');
-var assertSearchSequence = require('./assertSearchSequence');
+var assertSearchSequence = require('./helpers/assertSearchSequence');
 
 function absolutePath(str) {
   return path.join(__dirname, str);
