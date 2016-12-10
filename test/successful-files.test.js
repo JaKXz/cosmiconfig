@@ -1,11 +1,11 @@
 import test from 'ava';
-import { join } from 'path';
+import absolutePath from './helpers/absolutePath';
 import cosmiconfig from '..';
 
 const { load: loadConfig } = cosmiconfig();
 
 test('defined JSON config path', (t) => {
-  const jsonConfig = join(__dirname, 'fixtures/foo.json');
+  const jsonConfig = absolutePath('fixtures/foo.json');
   
   return loadConfig(null, jsonConfig)
     .then((result) => {
@@ -17,7 +17,7 @@ test('defined JSON config path', (t) => {
 });
 
 test('defined YAML config path', (t) => {
-  const yamlConfig = join(__dirname, 'fixtures/foo.yaml');
+  const yamlConfig = absolutePath('fixtures/foo.yaml');
   
   return loadConfig(null, yamlConfig)
     .then((result) => {
@@ -29,7 +29,7 @@ test('defined YAML config path', (t) => {
 });
 
 test('defined JS config path', (t) => {
-  const jsConfig = join(__dirname, 'fixtures/foo.js');
+  const jsConfig = absolutePath('fixtures/foo.js');
   
   return loadConfig(null, jsConfig)
     .then((result) => {
@@ -41,7 +41,7 @@ test('defined JS config path', (t) => {
 });
 
 test('defined modulized JS config path', (t) => {
-  const jsConfig = join(__dirname, 'fixtures/foo-module.js');
+  const jsConfig = absolutePath('fixtures/foo-module.js');
   
   return loadConfig(null, jsConfig)
     .then((result) => {

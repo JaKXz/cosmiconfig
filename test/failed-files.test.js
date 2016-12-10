@@ -1,11 +1,11 @@
 import test from 'ava';
-import { join } from 'path';
+import absolutePath from './helpers/absolutePath';
 import cosmiconfig from '..';
 
 const { load: loadConfig } = cosmiconfig();
 
 test('defined file that does not exist', (t) => {
-  return loadConfig(null, join(__dirname, 'does/not/exist'))
+  return loadConfig(null, absolutePath('does/not/exist'))
     .then(t.fail)
     .catch((error) => {
       t.is(error.code, 'ENOENT', 'with expected format');
@@ -13,7 +13,7 @@ test('defined file that does not exist', (t) => {
 });
 
 test('defined JSON file with syntax error, without expected format', (t) => {
-  return loadConfig(null, join(__dirname, 'fixtures/foo-invalid.json'))
+  return loadConfig(null, absolutePath('fixtures/foo-invalid.json'))
     .then(t.fail)
     .catch((error) => {
       t.regex(error.message, /^Failed to parse/);
@@ -25,7 +25,7 @@ test('defined JSON file with syntax error, with expected format', (t) => {
     format: 'json',
   }).load;
 
-  return t.context.loadConfig(null, join(__dirname, 'fixtures/foo-invalid.json'))
+  return t.context.loadConfig(null, absolutePath('fixtures/foo-invalid.json'))
     .then(t.fail)
     .catch((error) => {
       // t.is(error.name, 'JSONError'); TODO fix this failure
@@ -34,7 +34,7 @@ test('defined JSON file with syntax error, with expected format', (t) => {
 });
 
 test('defined YAML file with syntax error, without expected format', (t) => {
-  return loadConfig(null, join(__dirname, 'fixtures/foo-invalid.yaml'))
+  return loadConfig(null, absolutePath('fixtures/foo-invalid.yaml'))
     .then(t.fail)
     .catch((error) => {
       t.regex(error.message, /^Failed to parse/);
@@ -46,7 +46,7 @@ test('defined YAML file with syntax error, with expected format', (t) => {
     format: 'yaml',
   }).load;
 
-  return t.context.loadConfig(null, join(__dirname, 'fixtures/foo-invalid.yaml'))
+  return t.context.loadConfig(null, absolutePath('fixtures/foo-invalid.yaml'))
     .then(t.fail)
     .catch((error) => {
       t.is(error.name, 'YAMLException');
@@ -54,7 +54,7 @@ test('defined YAML file with syntax error, with expected format', (t) => {
 });
 
 test('defined JS file with syntax error, without expected format', (t) => {
-  return loadConfig(null, join(__dirname, 'fixtures/foo-invalid.js'))
+  return loadConfig(null, absolutePath('fixtures/foo-invalid.js'))
     .then(t.fail)
     .catch((error) => {
       t.regex(error.message, /^Failed to parse/);
@@ -66,7 +66,7 @@ test('defined JS file with syntax error, with expected format', (t) => {
     format: 'js',
   }).load;
 
-  return t.context.loadConfig(null, join(__dirname, 'fixtures/foo-invalid.js'))
+  return t.context.loadConfig(null, absolutePath('fixtures/foo-invalid.js'))
     .then(t.fail)
     .catch((error) => {
       t.notRegex(error.message, /^Failed to parse/);
