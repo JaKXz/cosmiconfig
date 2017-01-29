@@ -1,5 +1,7 @@
 # cosmiconfig
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/JaKXz/cosmiconfig.svg)](https://greenkeeper.io/)
+
 [![Build Status](https://img.shields.io/travis/davidtheclark/cosmiconfig/master.svg?label=unix%20build)](https://travis-ci.org/davidtheclark/cosmiconfig) [![Build status](https://img.shields.io/appveyor/ci/davidtheclark/cosmiconfig/master.svg?label=windows%20build)](https://ci.appveyor.com/project/davidtheclark/cosmiconfig/branch/master)
 
 Find and load a configuration object from
